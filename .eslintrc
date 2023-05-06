@@ -4,6 +4,10 @@
     "es6": true,
     "jest/globals": true
   },
+  "parserOptions": {
+    "ecmaVersion": 8,
+    "sourceType": "module"
+  },
   "extends": [
     "airbnb-base"
   ],
@@ -13,10 +17,7 @@
    
   },
   "plugins": ["jest"],
-  "parserOptions": {
-    "ecmaVersion": 2018,
-    "sourceType": "module"
-  },
+  
   "rules": {
     "linebreak-style": 0,
     "prefer-destructuring": 0,
