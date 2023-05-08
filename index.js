@@ -1,6 +1,6 @@
-import fs from ('fs');
+/*import fs from ('fs');
 
-const mdLinks = (path, opstions) => {
+const mdLinks = (path, options) => {
   return new Promise((resolve, reject) => {
 
     //comprobar que la ruta existe.
@@ -20,4 +20,9 @@ resolve(path)
 }
 export {
   mdLinks
-};
+};*/
+
+
+// comandos
+import {mdLinks} from './mdlinks.js';
+mdLinks();
