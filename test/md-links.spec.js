@@ -1,5 +1,38 @@
-import { mdLinks } from '../mdlinks.js';
-import { ddeterminarExistencia} from '../mdlinks.js';
+import { rutaExiste , esAbsoluta} from '../mdlinks.js';
+import  path  from 'path';
+
+
+
+describe('rutaExiste',() => {
+  it('debe ser una funcion',() =>{
+    expect(typeof rutaExiste).toBe('function');
+  });
+  it('le entrego una ruta y deberia retornar true',() => {
+    expect(rutaExiste('./ejemplo.md')).toBe(true);
+  });
+  it('le entrego una ruta y deberia retornar false',() => {
+    expect(rutaExiste('/ejemploNoExiste.md')).toBe(false);
+  });
+ });
+
+ describe('esAbsoluta',() => {
+  it('debe ser una funcion',() =>{
+    expect(typeof esAbsoluta).toBe('function');
+  });
+  it('le entrego una ruta y deberia retornar true',() => {
+    expect(esAbsoluta('D:\\laboratoria\\proyecto-4\\DEV004-md-links\\ejemplo.md')).toBe(true);
+  });
+  it('le entrego una ruta y deberia retornar false',() => {
+    expect(esAbsoluta('ejemplo.md')).toBe(false);
+  });
+ });
+
+
+
+/*test('esAbsoluta',() =>{
+  expect(typeof rutaExiste).toBe('function');
+});
+
 
 
 //describe('mdLinks', () => {
@@ -16,10 +49,10 @@ import { ddeterminarExistencia} from '../mdlinks.js';
   })
   });
   });*/
-  describe('determinarExistencia', () =>{
-    
-    it('deberia retornar que no existe', () =>{
-      determinarExistencia(  )
+ 
+ 
+    /*it('deberia retornar que no existe', () =>{
+      expect(rutaExiste('./ejemplo.md')).toBe(true)
     })
     it('deberia retornar que si existe', () =>{
       determinarExistencia(  )
@@ -54,6 +87,6 @@ import { ddeterminarExistencia} from '../mdlinks.js';
           }
         );
 
-    });
+    });*/
 
-  });
+ 

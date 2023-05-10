@@ -1,27 +1,11 @@
 // funciones
-export const determinarExistencia = (ruta) => {
+import { existsSync } from 'node:fs';
+import  path  from 'path';
 
-}
-export const mdLinks = (path, options) => {//modules.exports
+export const rutaExiste = (ruta) => {
+     return existsSync(ruta)
 
-    const existeRuta = determinarExistencia(ruta);
-    if (existeRuta) {
-        //algo
-        //si existe es absoluta
-        const esAbsoluta = esAbsoluta(ruta);
-        if (!esAbsoluta) {
-            //si no es absoluta convertirla a absoluta
-            const nuevaRuta = convertirAbsoluta(ruta);
-        }
-        //leer archivo
-        const contenido = leerArchivo(nuevaRuta)// sera async??, saber si es dentrro de then o callback
-        const extraerContenido = extraerContenido(nuevaRuta)
-
-
-    } else {
-
-    }
-
-
-
+};
+export const esAbsoluta = (ruta) => {
+     return path.resolve(ruta) === ruta;
 }
