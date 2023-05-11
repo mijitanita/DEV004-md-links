@@ -1,4 +1,4 @@
-import { rutaExiste , esAbsoluta} from '../mdlinks.js';
+import { rutaExiste, esAbsoluta, obtenerRutaAbsoluta } from '../mdlinks.js';
 import  path  from 'path';
 
 
@@ -11,7 +11,7 @@ describe('rutaExiste',() => {
     expect(rutaExiste('./ejemplo.md')).toBe(true);
   });
   it('le entrego una ruta y deberia retornar false',() => {
-    expect(rutaExiste('/ejemploNoExiste.md')).toBe(false);
+    expect(rutaExiste('laboratoria\proyecto-4\DEV004-md-links\index.js')).toBe(false);
   });
  });
 
@@ -27,11 +27,19 @@ describe('rutaExiste',() => {
   });
  });
 
+ describe('obtenerRutaAbsoluta',() => {
+  it('debe ser una funcion',() =>{
+    expect(typeof obtenerRutaAbsoluta).toBe('function');
+  });
+  it('deberia devolver una ruta absoluta',() => {
+       expect(path.isAbsolute(obtenerRutaAbsoluta('./ejemplo.md'))).toBe(true);
+  });
+ // it('le entrego una ruta y deberia retornar false',() => {
+   // expect(esAbsoluta('ejemplo.md')).toBe(false);
+  //});
+ });
 
 
-/*test('esAbsoluta',() =>{
-  expect(typeof rutaExiste).toBe('function');
-});
 
 
 
