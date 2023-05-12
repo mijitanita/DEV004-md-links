@@ -23,8 +23,12 @@ export const obtenerRutaAbsoluta = (ruta) => {
 console.log(path.resolve('D:\\laboratoria\\proyecto-4\\DEV004-md-links\\index.js'));
 
 //es archivo?
-let stats = fs.statSync('./index.js');
-     console.log('is file?' + stats.isFile() );
+export const esArchivo = (ruta) => {
+       const stats = fs.statSync('./index.js');
+          return stats.isFile();
+          
+};console.log('is file?' + esArchivo('./index.js') );
+
 
 //los archivos tienen extensión .md?
 //los archivos .md tienen links?
