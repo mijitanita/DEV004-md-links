@@ -34,11 +34,19 @@ describe('rutaExiste',() => {
   it('deberia devolver una ruta absoluta',() => {
        expect(path.isAbsolute(obtenerRutaAbsoluta('./ejemplo.md'))).toBe(true);
   });
- // it('le entrego una ruta y deberia retornar false',() => {
-   // expect(esAbsoluta('ejemplo.md')).toBe(false);
-  //});
+ 
  });
-
+ describe('rutaEsArchivo',() => {
+  it('debe ser una funcion',() =>{
+    expect(typeof rutaEsArchivo).toBe('function');
+  });
+  it('la ruta dada debe ser un archivo',() => {
+       expect(rutaEsArchivo('./ejemplo.md')).toBe(true);
+  });
+  it('la ruta dada no debe ser un archivo',() => {
+    expect(rutaEsArchivo('./test')).toBe(false);
+});
+ });
 
 
 
