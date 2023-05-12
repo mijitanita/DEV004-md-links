@@ -30,7 +30,15 @@ export const rutaEsArchivo = (ruta) => {
 }
 console.log('is file?' + rutaEsArchivo('./index.js'));
 console.log('is file?' + rutaEsArchivo('./test'));
+
 //los archivos tienen extensión .md?
+export const archivoEsMD = (archivo) => {
+     const extension = path.extname(archivo);
+     return extension === '.md';
+}
+console.log('is .md?'+  archivoEsMD('README.md'));
+console.log('is .md?'+  archivoEsMD('./index.js'));
+
 //los archivos .md tienen links?
 //si tiene links leerlos
 //extraer los links

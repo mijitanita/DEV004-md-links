@@ -1,4 +1,4 @@
-import { rutaExiste, esAbsoluta, obtenerRutaAbsoluta, rutaEsArchivo } from '../mdlinks.js';
+import { rutaExiste, esAbsoluta, obtenerRutaAbsoluta, rutaEsArchivo, archivoEsMD } from '../mdlinks.js';
 import  path  from 'path';
 
 
@@ -47,7 +47,17 @@ describe('rutaExiste',() => {
     expect(rutaEsArchivo('./test')).toBe(false);
 });
  });
-
+ describe('archivoEsMD',() => {
+  it('debe ser una funcion',() =>{
+    expect(typeof archivoEsMD).toBe('function');
+  });
+  it('el archivo dado debe ser .md',() => {
+       expect(archivoEsMD('./ejemplo.md')).toBe(true);
+  });
+  it('el archivo dado no debe ser .md',() => {
+    expect(archivoEsMD('./index.js')).toBe(false);
+});
+ });
 
 
 
