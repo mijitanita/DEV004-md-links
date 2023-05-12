@@ -1,4 +1,4 @@
-import { rutaExiste, esAbsoluta, obtenerRutaAbsoluta, rutaEsArchivo, archivoEsMD } from '../mdlinks.js';
+import { rutaExiste, esAbsoluta, obtenerRutaAbsoluta, rutaEsArchivo, archivoEsMD, hayLinks } from '../mdlinks.js';
 import  path  from 'path';
 
 
@@ -59,7 +59,17 @@ describe('rutaExiste',() => {
 });
  });
 
-
+ describe('hayLinks',() => {
+  it('debe ser una funcion',() =>{
+    expect(typeof hayLinks).toBe('function');
+  });
+  it('el archivo . md dado debe contener links',() => {
+       expect(hayLinks('./ejemplo.md').length).toBeGreaterThan(0);
+  });
+  it('el archivo .md dado no debe contener links',() => {
+    expect(hayLinks('./notienelinks.md')).toBe(0);
+});
+ });
 
 //describe('mdLinks', () => {
 

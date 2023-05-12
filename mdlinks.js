@@ -36,9 +36,27 @@ export const archivoEsMD = (archivo) => {
      const extension = path.extname(archivo);
      return extension === '.md';
 }
-console.log('is .md?'+  archivoEsMD('README.md'));
-console.log('is .md?'+  archivoEsMD('./index.js'));
+console.log('is .md?' + archivoEsMD('README.md'));
+console.log('is .md?' + archivoEsMD('./index.js'));
 
 //los archivos .md tienen links?
+export const hayLinks = (archivo) => {
+     const contenidoArchivo = fs.readFileSync(archivo, 'utf8');
+     const regex = /\[([^\]]+)\]\((http[s]?:\/\/[^\)]+)\)/g;
+     const arrayDeLinks = [];
+
+     let match;
+     while ((match = regex.exec(contenidoArchivo))) {
+          arrayDeLinks.push({
+               texto: match[1],
+               url: match[2],
+          });
+     }
+
+     return arrayDeLinks;
+}
+
+const arrayDeLinks = hayLinks('./ejemplo.md');
+console.log(arrayDeLinks);
 //si tiene links leerlos
 //extraer los links
