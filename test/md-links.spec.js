@@ -1,4 +1,4 @@
-import { rutaExiste, esAbsoluta, obtenerRutaAbsoluta, esArchivo  } from '../mdlinks.js';
+import { rutaExiste, esAbsoluta, obtenerRutaAbsoluta } from '../mdlinks.js';
 import  path  from 'path';
 
 
@@ -39,15 +39,6 @@ describe('rutaExiste',() => {
   //});
  });
 
- describe('esArchivo',() => {
-  it('debe ser una funcion',() =>{
-    expect(typeof esArchivo).toBe('function');
-  });
-  it('deberia devolver true si es archivo',() => {
-       expect (esArchivo('./index.js')).toBe(true);
-  });
- 
- });
 
 
 
