@@ -1,4 +1,4 @@
-import { rutaExiste, esAbsoluta, obtenerRutaAbsoluta, rutaEsArchivo, archivoEsMD, hayLinks } from '../mdlinks.js';
+import { rutaExiste, esAbsoluta, obtenerRutaAbsoluta, rutaEsArchivo, archivoEsMD, leerContenidoArchivo} from '../mdlinks.js';
 import  path  from 'path';
 
 
@@ -59,17 +59,28 @@ describe('rutaExiste',() => {
 });
  });
 
- describe('hayLinks',() => {
+ describe('leerContenidoArchivo',() => {
   it('debe ser una funcion',() =>{
-    expect(typeof hayLinks).toBe('function');
+    expect(typeof leerContenidoArchivo).toBe('function');
   });
-  it('el archivo . md dado debe contener links',() => {
-       expect(hayLinks('./ejemplo.md').length).toBeGreaterThan(0);
+  it('debe de leer el contenido del archivo . md', () => {
+   return leerContenidoArchivo('ejemplo.md').then(({links}) =>{
+   expect(links).toEqual([
+    { text: 'Markdown', url: 'https://es.wikipedia.org/wiki/Markdown' },
+    { text: 'Node.js', url: 'https://nodejs.org/' },
+    { text: 'motor de JavaScript V8 de Chrome', url: 'https://developers.google.com/v8/' },
+  ]);
+   })
+    
   });
-  it('el archivo .md dado no debe contener links',() => {
-    expect(hayLinks('./notienelinks.md')).toBe(0);
-});
- });
+  
+  it('no debe de leer el contenido del archivo .md',() => {
+    const promise = leerContenidoArchivo('sinlinks.md');
+   return promise.catch((err) => {
+      expect(err instanceof Error).toBe(true);      
+    });    
+  });
+  });
 
 //describe('mdLinks', () => {
 

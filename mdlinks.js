@@ -1,31 +1,32 @@
 // funciones
+import { constants } from 'buffer';
 import fs from 'fs';
 import { existsSync, statSync } from 'node:fs';
 import path from 'path';
 
-//ruta existe?
-export const rutaExiste = (ruta) => {
-     return existsSync(ruta)
+//archivo existe?
+export const rutaExiste = (archivo) => {
+     return existsSync(archivo)
 
 };
 console.log('existe', rutaExiste('laboratoria\proyecto-4\DEV004-md-links\index.js'));
 
-// si existe ruta es absoluta?
-export const esAbsoluta = (ruta) => {
-     return path.resolve(ruta) === ruta;
+// si existe archivo es absoluta?
+export const esAbsoluta = (archivo) => {
+     return path.resolve(archivo) === archivo;
 };
 console.log('relativa', esAbsoluta('./index.js'));
 console.log('relativa', esAbsoluta('D:\\laboratoria\\proyecto-4\\DEV004-md-links\\index.js'));
 
-//convertir ruta relativa a absoluta
-export const obtenerRutaAbsoluta = (ruta) => {
-     return path.resolve(ruta);
+//convertir archivo relativa a absoluta
+export const obtenerRutaAbsoluta = (archivo) => {
+     return path.resolve(archivo);
 }
 console.log(path.resolve('./index.js'));
 
-//la ruta es un  archivo?
-export const rutaEsArchivo = (ruta) => {
-     const stats = fs.statSync(ruta);
+//la archivo es un  archivo?
+export const rutaEsArchivo = (archivo) => {
+     const stats = fs.statSync(archivo);
      return stats.isFile();
 }
 console.log('is file?' + rutaEsArchivo('./index.js'));
@@ -39,24 +40,49 @@ export const archivoEsMD = (archivo) => {
 console.log('is .md?' + archivoEsMD('README.md'));
 console.log('is .md?' + archivoEsMD('./index.js'));
 
-//los archivos .md tienen links?
-export const hayLinks = (archivo) => {
-     const contenidoArchivo = fs.readFileSync(archivo, 'utf8');
-     const regex = /\[([^\]]+)\]\((http[s]?:\/\/[^\)]+)\)/g;
-     const arrayDeLinks = [];
-
-     let match;
-     while ((match = regex.exec(contenidoArchivo))) {
-          arrayDeLinks.push({
-               texto: match[1],
-               url: match[2],
+//leer el archivo , ?
+// 1 hacer que la funcion retorne una promesa que resuelva la archivo que recibio por parametro
+// 2 hacer que resuelva el contenido de la archivo que recibio por parametro
+export const leerContenidoArchivo = (archivo) => {
+     return new Promise ((resolve,  reject) => {
+          fs.readFile(archivo, 'utf-8', (err, data) => {
+               if(err){
+                    reject(err);
+               }else{
+                    const regex = /\[([^\]]+)\]\(([^\s]+)\)/g;
+      const links = [];
+      let match;
+      while ((match = regex.exec(data))) {
+        links.push({ text: match[1], url: match[2] });
+      }
+                    resolve({links}); 
+               }
           });
-     }
 
-     return arrayDeLinks;
+     });
+
 }
 
-const arrayDeLinks = hayLinks('./ejemplo.md');
-console.log(arrayDeLinks);
-//si tiene links leerlos
-//extraer los links
+const validarLosLinks = (array) =>{
+     // recorrer el array
+     // investigar fetch/axios/http:node
+     // hacer la peticion por cada url en el array
+}
+
+ leerContenidoArchivo('ejemplo.md').then(({links}) => {
+     
+
+     console.log(links, '******');
+     validarLosLinks(links)
+    
+})
+.catch(err => console.error(err));
+
+     
+     
+
+// listar los links , array de strings con formato md  
+
+//  extraer los links(), es un array de objetos 
+
+
