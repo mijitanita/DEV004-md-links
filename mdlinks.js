@@ -53,7 +53,7 @@ export const leerContenidoArchivo = (archivo) => {
       const links = [];
       let match;
       while ((match = regex.exec(data))) {
-        links.push({ text: match[1], url: match[2] });
+        links.push({ text: match[1], url: match[2]});
       }
                     resolve({links}); 
                }
@@ -70,19 +70,15 @@ const validarLosLinks = (array) =>{
 }
 
  leerContenidoArchivo('ejemplo.md').then(({links}) => {
-     
+     const soloUrl = links.map(link => link.url);
 
-     console.log(links, '******');
+     console.log(links);
+     console.log(soloUrl);
      validarLosLinks(links)
     
 })
 .catch(err => console.error(err));
 
-     
-     
-
-// listar los links , array de strings con formato md  
-
-//  extraer los links(), es un array de objetos 
+//  extraer solo los links(), es un array de objetos links
 
 
