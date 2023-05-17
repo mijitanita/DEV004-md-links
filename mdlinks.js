@@ -3,7 +3,7 @@ import { constants } from 'buffer';
 import fs from 'fs';
 import { existsSync, statSync } from 'node:fs';
 import path from 'path';
-
+import { validarLosLinks } from './validate.js';
 //archivo existe?
 export const rutaExiste = (archivo) => {
      return existsSync(archivo)
@@ -44,41 +44,51 @@ console.log('is .md?' + archivoEsMD('./index.js'));
 // 1 hacer que la funcion retorne una promesa que resuelva la archivo que recibio por parametro
 // 2 hacer que resuelva el contenido de la archivo que recibio por parametro
 export const leerContenidoArchivo = (archivo) => {
-     return new Promise ((resolve,  reject) => {
+     return new Promise((resolve, reject) => {
           fs.readFile(archivo, 'utf-8', (err, data) => {
-               if(err){
+               if (err) {
                     reject(err);
-               }else{
-                    const regex = /\[([^\]]+)\]\(([^\s]+)\)/g;
-      const links = [];
-      let match;
-      while ((match = regex.exec(data))) {
-        links.push({ text: match[1], url: match[2]});
-      }
-                    resolve({links}); 
+               } else {
+                    const regex = /\[(?<text>.*?)\]\((?<url>https?:\/\/[^\s)]+)(?<!#)\)/g;;
+                    const links = [];
+                    let match;
+                    while ((match = regex.exec(data))) {
+                         links.push({
+                              text: match[1],
+                              url: match[2],
+                              file: archivo,
+
+
+                         });
+                    }
+                    resolve({ links });
                }
           });
 
      });
 
 }
+let soloUrl;
+let soloTexto;
 
-const validarLosLinks = (array) =>{
-     // recorrer el array
-     // investigar fetch/axios/http:node
-     // hacer la peticion por cada url en el array
-}
+leerContenidoArchivo('ejemplo.md')
+     .then(({ links }) => {
+          soloUrl = links.map(link => link.url);
+          soloTexto = links.map(link => link.text);
 
- leerContenidoArchivo('ejemplo.md').then(({links}) => {
-     const soloUrl = links.map(link => link.url);
+          console.log(links,'****');
+          console.log(soloUrl);
+          console.log(soloTexto);
 
-     console.log(links);
-     console.log(soloUrl);
-     validarLosLinks(links)
-    
+          validarLosLinks(soloUrl[0], soloTexto[0])
+               .then((res) => {
+                    console.log(res);
+               })
+   .catch ((error) => {
+               console.log(error);
+          }); 
 })
-.catch(err => console.error(err));
+.catch (err => console.error(err));
 
-//  extraer solo los links(), es un array de objetos links
 
 
