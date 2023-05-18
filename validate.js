@@ -1,10 +1,11 @@
 import {archivoEsMD} from './mdlinks.js'
+import fetch from 'node-fetch';
 
 // recorrer el array
 // investigar fetch/axios/http:node
 // hacer la peticion por cada url en el array
 
-export const validarLosLinks = (url, text) => {
+export const validarLosLinks = (url, archivo, text) => {
     //return new Promise((resolve, reject) => {
         return fetch(url) 
 
@@ -16,8 +17,8 @@ export const validarLosLinks = (url, text) => {
                     url: url,
                     status: response.status,
                     statusText: response.statusText,
-                    //file: archivo,
-                    text: text
+                    file: archivo,
+                    text: text,
 // debe tambien devolver file y ok
                 };
             })

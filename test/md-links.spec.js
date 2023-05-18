@@ -66,9 +66,9 @@ describe('rutaExiste',() => {
   it('debe de leer el contenido del archivo . md', () => {
    return leerContenidoArchivo('ejemplo.md').then(({links}) =>{
    expect(links).toEqual([
-    { text: 'Markdown', url: 'https://es.wikipedia.org/wiki/Markdown' },
-    { text: 'Node.js', url: 'https://nodejs.org/' },
-    { text: 'motor de JavaScript V8 de Chrome', url: 'https://developers.google.com/v8/' },
+    { file: 'ejemplo.md', text: 'Markdown', url: 'https://es.wikipedia.org/wiki/Markdown' },
+    { file: 'ejemplo.md', text: 'Node.js', url: 'https://nodejs.org/' },
+    { file: 'ejemplo.md', text: 'motor de JavaScript V8 de Chrome', url: 'https://developers.google.com/v8/' },
   ]);
    })
     

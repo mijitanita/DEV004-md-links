@@ -1,6 +1,7 @@
 // comandos
-import {rutaExiste , esAbsoluta, obtenerRutaAbsoluta} from './mdlinks.js';
+import {rutaExiste , esAbsoluta, obtenerRutaAbsoluta, archivoEsMD, rutaEsArchivo, leerContenidoArchivo} from './mdlinks.js';
 import  path  from 'path';
+import {validarLosLinks} from './validate'
 
 export const mdLinks = (path, options) =>new Promise((resolve, reject)=>{
   if(!path) reject('No hay path')

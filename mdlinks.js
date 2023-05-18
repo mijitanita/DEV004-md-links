@@ -4,6 +4,7 @@ import fs from 'fs';
 import { existsSync, statSync } from 'node:fs';
 import path from 'path';
 import { validarLosLinks } from './validate.js';
+
 //archivo existe?
 export const rutaExiste = (archivo) => {
      return existsSync(archivo)
@@ -70,6 +71,7 @@ export const leerContenidoArchivo = (archivo) => {
 }
 let soloUrl;
 let soloTexto;
+let archivo = 'ejemplo.md';
 
 leerContenidoArchivo('ejemplo.md')
      .then(({ links }) => {
@@ -80,7 +82,7 @@ leerContenidoArchivo('ejemplo.md')
           console.log(soloUrl);
           console.log(soloTexto);
 
-          validarLosLinks(soloUrl[0], soloTexto[0])
+          validarLosLinks(soloUrl[0],archivo, soloTexto[0])
                .then((res) => {
                     console.log(res);
                })
