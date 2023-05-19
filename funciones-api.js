@@ -4,6 +4,7 @@ import fs from 'fs';
 import { existsSync, statSync } from 'node:fs';
 import path from 'path';
 import { validarLosLinks } from './validate.js';
+import chalk from 'chalk';
 
 //archivo existe?
 export const rutaExiste = (archivo) => {
@@ -13,11 +14,11 @@ export const rutaExiste = (archivo) => {
 console.log('existe', rutaExiste('laboratoria\proyecto-4\DEV004-md-links\index.js'));
 
 // si existe archivo es absoluta?
-export const esAbsoluta = (archivo) => {
+/*export const esAbsoluta = (archivo) => {
      return path.resolve(archivo) === archivo;
 };
 console.log('relativa', esAbsoluta('./index.js'));
-console.log('relativa', esAbsoluta('D:\\laboratoria\\proyecto-4\\DEV004-md-links\\index.js'));
+console.log('relativa', esAbsoluta('D:\\laboratoria\\proyecto-4\\DEV004-md-links\\index.js'));*/
 
 //convertir archivo relativa a absoluta
 export const obtenerRutaAbsoluta = (archivo) => {
@@ -73,7 +74,7 @@ let soloUrl;
 let soloTexto;
 let archivo = 'ejemplo.md';
 
-leerContenidoArchivo('ejemplo.md')
+/*leerContenidoArchivo('ejemplo.md')
      .then(({ links }) => {
           soloUrl = links.map(link => link.url);
           soloTexto = links.map(link => link.text);
@@ -90,7 +91,7 @@ leerContenidoArchivo('ejemplo.md')
                console.log(error);
           }); 
 })
-.catch (err => console.error(err));
+.catch (err => console.error(err));*/
 
 
 

@@ -1,4 +1,4 @@
-import {archivoEsMD} from './mdlinks.js'
+import {archivoEsMD} from './funciones-api.js'
 import fetch from 'node-fetch';
 
 // recorrer el array
