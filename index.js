@@ -1,5 +1,5 @@
 // comandos
-import { rutaExiste, obtenerRutaAbsoluta, archivoEsMD, rutaEsArchivo, leerContenidoArchivo } from './funciones-api.js';
+import { rutaExiste, obtenerRutaAbsoluta, archivoEsMD, rutaEsArchivo, leerContenidoArchivo, linksUnicos } from './funciones-api.js';
 import path from 'path';
 import { validarLosLinks } from './validate.js'
 
@@ -22,6 +22,7 @@ export const mdLinks = (ruta, options) => new Promise((resolve, reject) => {
     .then(({ links }) => {
       const soloUrl = links.map(link => link.url);
       const soloTexto = links.map(link => link.text);
+      const unicos = linksUnicos(links);
       // si el usuario no quiere validar , resolver con links
       if(!options.validate){
         resolve(links)

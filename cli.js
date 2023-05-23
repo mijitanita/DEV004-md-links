@@ -12,6 +12,7 @@ console.log({validate})*/
 //+++++++++++++++++++
 
 const cli = () => {
+    
     //funcion que verifica las opciones indicadas por el usuario, llamando a la funcion mdLinks que esta en index.js
     //inicializo  ruta y optiion
     const rutaDada = argv[2];
@@ -24,11 +25,25 @@ const cli = () => {
     console.log(chalk.bold.italic.magenta('\t\t\t\t\t\tpor: Ana Márquez Castro \n\n'));
 
     mdLinks(rutaDada, options).then((links) => {
-        console.log(links)
+        if(argv.length < 3){
+            console.log(chalk.bgYellowBright.red('No hay ruta'));
+            return;
+        }
+        if(argv[2] === undefined){
+            console.log(chalk.bgYellowBright.red('Ruta inválida verificar si la ruta es  correcta ej. prueba.txt'));
+            return;
+        }
+
+        if(options.stats){
+            const linksUnicos = new Set(links.map(link => link.url)).size;
+            console.log(chalk.bold('\nUnique:'), chalk.bgCyan(linksUnicos));
+        }
+
+        //console.log(links)
         //mostrar los links linea x linea
         //mostrar estadisticas si asi lo requiere el usuario
     }).catch((error) =>{
-        console.log(error)
+        console.log(chalk.red('Ocurrió un error al ejecutar mdLinks:', error));
     })
     // imprimir los links que vaya encontrando
     //imprimir la ruta en donde aparecen

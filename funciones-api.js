@@ -53,12 +53,15 @@ export const leerContenidoArchivo = (archivo) => {
                } else {
                     const regex = /\[(?<text>.*?)\]\((?<url>https?:\/\/[^\s)]+)(?<!#)\)/g;;
                     const links = [];
+                    const lines = data.split('\n');
                     let match;
-                    while ((match = regex.exec(data))) {
+                    while ((match = regex.exec(data)) !== null) {
                          links.push({
                               text: match[1],
                               url: match[2],
                               file: archivo,
+                              linkLine: lines.findIndex(line =>
+                              line.includes(match[2])) + 1
 
 
                          });
@@ -70,6 +73,22 @@ export const leerContenidoArchivo = (archivo) => {
      });
 
 }
+//calcular la cantidad de links unicos
+export const linksUnicos = (links) => {
+     const unicos = [];
+     links.forEach((link)=> {
+          const linksUnicosEncontrados = unicos.some((unicos) => 
+               unicos.url === link.url);
+               if (!linksUnicosEncontrados){
+                    unicos.push(link);
+               }
+
+          });
+          return unicos;
+
+     }
+
+
 
 
 
