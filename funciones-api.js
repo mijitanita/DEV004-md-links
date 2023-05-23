@@ -11,7 +11,7 @@ export const rutaExiste = (archivo) => {
      return existsSync(archivo)
 
 };
-console.log('existe', rutaExiste('laboratoria\proyecto-4\DEV004-md-links\index.js'));
+//console.log('existe', rutaExiste('laboratoria\proyecto-4\DEV004-md-links\index.js'));
 
 // si existe archivo es absoluta?
 /*export const esAbsoluta = (archivo) => {
@@ -24,23 +24,23 @@ console.log('relativa', esAbsoluta('D:\\laboratoria\\proyecto-4\\DEV004-md-links
 export const obtenerRutaAbsoluta = (archivo) => {
      return path.resolve(archivo);
 }
-console.log(path.resolve('./index.js'));
+//console.log(path.resolve('./index.js'));
 
 //la archivo es un  archivo?
 export const rutaEsArchivo = (archivo) => {
      const stats = fs.statSync(archivo);
      return stats.isFile();
 }
-console.log('is file?' + rutaEsArchivo('./index.js'));
-console.log('is file?' + rutaEsArchivo('./test'));
+//console.log('is file?' + rutaEsArchivo('./index.js'));
+//console.log('is file?' + rutaEsArchivo('./test'));
 
 //los archivos tienen extensión .md?
 export const archivoEsMD = (archivo) => {
      const extension = path.extname(archivo);
      return extension === '.md';
 }
-console.log('is .md?' + archivoEsMD('README.md'));
-console.log('is .md?' + archivoEsMD('./index.js'));
+//console.log('is .md?' + archivoEsMD('README.md'));
+//console.log('is .md?' + archivoEsMD('./index.js'));
 
 //leer el archivo , ?
 // 1 hacer que la funcion retorne una promesa que resuelva la archivo que recibio por parametro
@@ -70,28 +70,8 @@ export const leerContenidoArchivo = (archivo) => {
      });
 
 }
-let soloUrl;
-let soloTexto;
-let archivo = 'ejemplo.md';
 
-/*leerContenidoArchivo('ejemplo.md')
-     .then(({ links }) => {
-          soloUrl = links.map(link => link.url);
-          soloTexto = links.map(link => link.text);
 
-          console.log(links,'****');
-          console.log(soloUrl);
-          console.log(soloTexto);
-
-          validarLosLinks(soloUrl[0],archivo, soloTexto[0])
-               .then((res) => {
-                    console.log(res);
-               })
-   .catch ((error) => {
-               console.log(error);
-          }); 
-})
-.catch (err => console.error(err));*/
 
 
 

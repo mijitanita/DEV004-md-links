@@ -10,6 +10,9 @@
     "url": "https://github.com/mijitanita/DEV004-md-links/issues"
   },
   "license": "ISC",
+  "bin":{
+    "say-hello": "./cli.js"
+  },
   "directories": {
     "test": "test"
   },
@@ -30,7 +33,6 @@
     "url": "https://github.com/mijitanita/DEV004-md-links"
   },
   "dependencies": {
-    "axios": "^1.3.5",
     "chalk": "^5.2.0",
     "chalknpm": "^1.0.1",
     "install": "^0.13.0",
