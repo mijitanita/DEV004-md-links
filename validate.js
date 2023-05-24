@@ -1,4 +1,4 @@
-import {archivoEsMD} from './funciones-api.js'
+//import {archivoEsMD} from './funciones-api.js'
 import fetch from 'node-fetch';
 
 // recorrer el array
@@ -6,10 +6,7 @@ import fetch from 'node-fetch';
 // hacer la peticion por cada url en el array
 
 export const validarLosLinks = (url, archivo, text) => {
-   
-        return fetch(url) 
-
-         
+           return fetch(url)          
     .then(response => {
                 return {
                     url: url,
@@ -17,7 +14,6 @@ export const validarLosLinks = (url, archivo, text) => {
                     statusText: response.statusText,
                     file: archivo,
                     text: text,
-
                 };
             })
             .catch(error => {
@@ -26,9 +22,7 @@ export const validarLosLinks = (url, archivo, text) => {
                     status: -1,
                     Text: error.message
                 };
-            });
-
-    
+            }); 
 };
 
   

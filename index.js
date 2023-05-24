@@ -3,6 +3,7 @@ import { rutaExiste, obtenerRutaAbsoluta, archivoEsMD, rutaEsArchivo, leerConten
 import path from 'path';
 import { validarLosLinks } from './validate.js'
 
+
 export const mdLinks = (ruta, options) => new Promise((resolve, reject) => {
   if (!ruta) reject('No hay ruta')
 
@@ -20,32 +21,47 @@ export const mdLinks = (ruta, options) => new Promise((resolve, reject) => {
   //leer archivo
   leerContenidoArchivo(nuevaRuta)// sera async??, saber si es dentrro de then o callback
     .then(({ links }) => {
-      const soloUrl = links.map(link => link.url);
-      const soloTexto = links.map(link => link.text);
-      const unicos = linksUnicos(links);
+      //const soloUrl = links.map(link => link.url);
+      //const soloTexto = links.map(link => link.text);
+      //const unicos = linksUnicos(links);
+      /*const cuentoLinks = totalDeLinks(links);
+      const cuentoLinksRotos = totalDeLinksRotos(links);*/
+
       // si el usuario no quiere validar , resolver con links
       if(!options.validate){
-        resolve(links)
-      }
-      const promises = soloUrl.map((url, index) => {
+        resolve(links);
+      } else {
+      const promises = links.map((link) => {
         //validamos los links
-        return validarLosLinks(url, nuevaRuta, soloTexto[index]);
+        return validarLosLinks(link.url, nuevaRuta, link.text);
       });
       Promise.all(promises)
-        .then(results => {
-          resolve(results);
-        })
-        .catch(error => {
-          reject(error);
-        });
+        .then((results) => {
+        if(options.stats){
+        const uniqueLinks = linksUnicos(links).length;
+        const totalLinks = links.length;
+        const stats = {
+          uniqueLinks:uniqueLinks,
+          totalLinks:totalLinks,
+        };
+        resolve(stats);
+
+      } else {
+        resolve(results);
+      }
     })
-    .catch(error => {
+    .catch((error) => {
       reject(error);
     });
+  }
+ 
+  })
+  .catch((error) => {
+    reject(error);
+  });
+});
 
 
-}
-);
  /* mdLinks('ejemplo.md')
  .then(links => {
    console.log(links);
