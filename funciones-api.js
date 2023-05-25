@@ -87,9 +87,9 @@ export const linksUnicos = (links) => {
      return unicos;
 
 }
-/*export const totalDeLinks = (links) => {
+export const totalDeLinks = (links) => {
      return links.length;
-     }*/
+     }
      
 
 export const totalDeLinksRotos = (links) => {

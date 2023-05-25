@@ -8,6 +8,8 @@ import fetch from 'node-fetch';
 export const validarLosLinks = (url, archivo, text) => {
            return fetch(url)          
     .then(response => {
+        const urlFinal = response.url;
+        if(response.ok){
                 return {
                     url: url,
                     status: response.status,
@@ -15,12 +17,15 @@ export const validarLosLinks = (url, archivo, text) => {
                     file: archivo,
                     text: text,
                 };
-            })
+            } else {
+                throw newError (`La solicitud a ${finalUrl} no fue exitosa. Código de estado: ${response.status}`)
+            }
+        })
             .catch(error => {
                 return {
                     url: url,
                     status: -1,
-                    Text: error.message
+                    text: error.message
                 };
             }); 
 };

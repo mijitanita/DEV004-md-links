@@ -1,5 +1,5 @@
 // comandos
-import { rutaExiste, obtenerRutaAbsoluta, archivoEsMD, rutaEsArchivo, leerContenidoArchivo, linksUnicos } from './funciones-api.js';
+import { rutaExiste, obtenerRutaAbsoluta, archivoEsMD, rutaEsArchivo, leerContenidoArchivo, linksUnicos, totalDeLinks } from './funciones-api.js';
 import path from 'path';
 import { validarLosLinks } from './validate.js'
 
@@ -12,22 +12,16 @@ export const mdLinks = (ruta, options) => new Promise((resolve, reject) => {
   //verificar si la ruta es absoluta
   /*const esAbsoluta = esAbsoluta(ruta);*/
   let nuevaRuta = ruta;
-  if (rutaExiste) {
+  if (rutaExiste(ruta)) {
     //si no es absoluta convertirla a absoluta
 
     const nuevaRuta = obtenerRutaAbsoluta(ruta);
   }
 
   //leer archivo
-  leerContenidoArchivo(nuevaRuta)// sera async??, saber si es dentrro de then o callback
+  leerContenidoArchivo(ruta)// sera async??, saber si es dentrro de then o callback
     .then(({ links }) => {
-      //const soloUrl = links.map(link => link.url);
-      //const soloTexto = links.map(link => link.text);
-      //const unicos = linksUnicos(links);
-      /*const cuentoLinks = totalDeLinks(links);
-      const cuentoLinksRotos = totalDeLinksRotos(links);*/
-
-      // si el usuario no quiere validar , resolver con links
+           // si el usuario no quiere validar , resolver con links
       if(!options.validate){
         resolve(links);
       } else {
@@ -38,14 +32,14 @@ export const mdLinks = (ruta, options) => new Promise((resolve, reject) => {
       Promise.all(promises)
         .then((results) => {
         if(options.stats){
-        const uniqueLinks = linksUnicos(links).length;
-        const totalLinks = links.length;
+        const uniqueLinks = linksUnicos;
+        const totalLinks = totalDeLinks;
         const stats = {
-          uniqueLinks:uniqueLinks,
-          totalLinks:totalLinks,
+          Unique: uniqueLinks,
+          Total: totalLinks,
         };
         resolve(stats);
-
+console.log(stats)
       } else {
         resolve(results);
       }
@@ -60,14 +54,5 @@ export const mdLinks = (ruta, options) => new Promise((resolve, reject) => {
     reject(error);
   });
 });
-
-
- /* mdLinks('ejemplo.md')
- .then(links => {
-   console.log(links);
- })
- .catch(error => {
-   console.error(error);
- });*/
 
 
