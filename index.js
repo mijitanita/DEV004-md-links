@@ -1,5 +1,5 @@
 // comandos
-import { rutaExiste, obtenerRutaAbsoluta, archivoEsMD, rutaEsArchivo, leerContenidoArchivo, linksUnicos, totalDeLinks, totalDeLinksRotos } from './funciones-api.js';
+import { rutaExiste, obtenerRutaAbsoluta, archivoEsMD, rutaEsArchivo, leerContenidoArchivo, linksUnicos, totalDeLinks } from './funciones-api.js';
 import path from 'path';
 import { validarLosLinks } from './validate.js'
 
@@ -21,39 +21,38 @@ export const mdLinks = (ruta, options) => new Promise((resolve, reject) => {
   //leer archivo
   leerContenidoArchivo(ruta)// sera async??, saber si es dentrro de then o callback
     .then(({ links }) => {
-      if (options.stats && options.validate) {
-        const solucion = {
-          Total: totalDeLinks(links),
-          Unique: linksUnicos(links),
-          Broken: totalDeLinksRotos(links),
-        }
-        //total,unique,broken
-      }
-      if (options.stats) {
-        const respuesta = {
-          Total: totalDeLinks(links),
-          Unique: linksUnicos(links),
-        }
-        resolve(respuesta)
-      }
-      // si el usuario no quiere validar , resolver con links
-      if (!options.validate) {
+           // si el usuario no quiere validar , resolver con links
+      if(!options.validate){
         resolve(links);
-      }
-      if (options.validate) {
-        const promises = links.map((link) => {
-          //validamos los links
-          return validarLosLinks(link.url, nuevaRuta, link.text);
-        });
+      } else {
+      const promises = links.map((link) => {
+        //validamos los links
+        return validarLosLinks(link.url, nuevaRuta, link.text);
+      });
+      Promise.all(promises)
+        .then((results) => {
+        if(options.stats){
+        const uniqueLinks = linksUnicos;
+        const totalLinks = totalDeLinks;
+        const stats = {
+          Unique: uniqueLinks,
+          Total: totalLinks,
+        };
+        resolve(stats);
+console.log(stats)
+      } else {
+        resolve(results);
       }
     })
-})
-
-
-
-
-
-
-
+    .catch((error) => {
+      reject(error);
+    });
+  }
+ 
+  })
+  .catch((error) => {
+    reject(error);
+  });
+});
 
 

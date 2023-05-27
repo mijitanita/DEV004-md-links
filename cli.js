@@ -35,12 +35,8 @@ const cli = () => {
                 return;
             }
 
-           
-           /* if (options.stats-validate) {
-                console.log(chalk.bold.blue('\nTotal:'), chalk.blue(results.Total));
-                console.log(chalk.bold.yellow('\nUnique:'), chalk.yellow(results.Unique));
-                console.log(chalk.bold.red('\nBroken:'), chalk.red(results.Broken));
-            }*/
+            //if (typeof results === 'object')
+            // if (Array.isArray(results)){
             if (options.stats) {
                 console.log(chalk.bold.blue('\nTotal:'), chalk.blue(results.Total));
                 console.log(chalk.bold.yellow('\nUnique:'), chalk.yellow(results.Unique));
@@ -58,20 +54,20 @@ const cli = () => {
                 });
 
             }
-            /*  else {
-                  console.log(chalk.bold('\nLinks Encontrados:'));
-                  results.forEach((link) => {
-                      console.log(chalk.underline(link.url));
-                      console.log(chalk.bold('Texto:'), link.text);
-                      console.log(chalk.bold('File:'), link.file);
-                      console.log(chalk.white('---***---'));
-                  });
-              }*/
+            else {
+                console.log(chalk.bold('\nLinks Encontrados:'));
+                results.forEach((link) => {
+                    console.log(chalk.underline(link.url));
+                    console.log(chalk.bold('Texto:'), link.text);
+                    console.log(chalk.bold('File:'), link.file);
+                    console.log(chalk.white('---***---'));
+                });
+            }
         })
-
-        .catch((error) => {
-            console.log(chalk.red('Ocurrió un error al ejecutar mdLinks:', error));
-        });
+       
+    .catch((error) => {
+    console.log(chalk.red('Ocurrió un error al ejecutar mdLinks:', error));
+});
 
 }
 cli()
