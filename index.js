@@ -32,14 +32,11 @@ export const mdLinks = (ruta, options) => new Promise((resolve, reject) => {
       Promise.all(promises)
         .then((results) => {
         if(options.stats){
-        const uniqueLinks = linksUnicos;
-        const totalLinks = totalDeLinks;
-        const stats = {
-          Unique: uniqueLinks,
-          Total: totalLinks,
-        };
+          const results = {
+        Unique: linksUnicos(links),
+        Total: totalDeLinks(links),
+      }
         resolve(stats);
-console.log(stats)
       } else {
         resolve(results);
       }
