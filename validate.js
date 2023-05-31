@@ -22,10 +22,13 @@ export const validarLosLinks = (url, archivo, text) => {
             }
         })
             .catch(error => {
+                console.log({error})
                 return {
                     url: url,
-                    status: -1,
-                    text: error.message
+                    status: 400,
+                    statusText: "Bad Request", 
+                    file: archivo,
+                    text: text,
                 };
             }); 
 };

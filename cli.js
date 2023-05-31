@@ -49,12 +49,13 @@ const cli = () => {
 
            else if (options.validate) {
                 console.log(chalk.bold.bgBlue.italic.white('\nLinks Validados:'));
+               
                 results.forEach((link) => {
-                    console.log(chalk.underline(link.url));
-                    console.log(chalk.bold('Status:'), link.status);                  
-                    console.log(chalk.bold('Mensaje:'), link.statusText);
-                    console.log(chalk.bold('File:'), link.file);
-                    console.log(chalk.bold('Texto:'), link.text);
+                    console.log(chalk.underline(link.value.url));
+                    console.log(chalk.bold('Status:'), link.value.status);                  
+                    console.log(chalk.bold('Mensaje:'), link.value.statusText);
+                    console.log(chalk.bold('File:'), link.value.file);
+                    console.log(chalk.bold('Texto:'), link.value.text);
                     console.log(chalk.white('---***---'));
                 });
 

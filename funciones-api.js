@@ -92,11 +92,14 @@ export const totalDeLinks = (links) => {
      }
      
 
-export const totalDeLinksRotos = (links) => {
-     const cuentoLinksRotos = links.filter(link => link.status !== 200);
+export const totalDeLinksRotos = (arrResults) => {
+     const cuentoLinksRotos = arrResults.filter(arrResult => arrResult.status ===400);
      return cuentoLinksRotos.length;
 
 }
+/*export const totalDeLinksRotos = (links) => {
+   return links.reduce((acumulador, link) => link.status >= 400 ? acumulador +1 : acumulador ,0)
+    }*/
 
 
 
