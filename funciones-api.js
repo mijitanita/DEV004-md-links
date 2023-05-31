@@ -84,7 +84,7 @@ export const linksUnicos = (links) => {
           }
 
      });
-     return unicos;
+     return unicos.length;
 
 }
 export const totalDeLinks = (links) => {

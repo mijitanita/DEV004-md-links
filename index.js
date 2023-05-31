@@ -21,15 +21,23 @@ export const mdLinks = (ruta, options) => new Promise((resolve, reject) => {
   //leer archivo
   leerContenidoArchivo(ruta)// sera async??, saber si es dentrro de then o callback
     .then(({ links }) => {
-           // si el usuario no quiere validar , resolver con links
-      if(!options.validate){
-        resolve(links);
-      } else {
+      
+      if(options.stats){
+        const results = {
+      Unique: linksUnicos(links),
+      Total: totalDeLinks(links),
+    }
+      resolve(results);
+    } else if(options.validate) {
       const promises = links.map((link) => {
         //validamos los links
         return validarLosLinks(link.url, nuevaRuta, link.text);
       });
-      Promise.all(promises)
+      }// si el usuario no quiere validar , resolver con links
+      else if(!options.validate){
+        resolve(links);
+      }
+   /*   Promise.all(promises)
         .then((results) => {
         if(options.stats){
           const results = {
@@ -44,7 +52,7 @@ export const mdLinks = (ruta, options) => new Promise((resolve, reject) => {
     .catch((error) => {
       reject(error);
     });
-  }
+  }*/
  
   })
   .catch((error) => {

@@ -34,27 +34,25 @@ const cli = () => {
                 console.log(chalk.bgYellowBright.red('No hay ruta o Ruta inválida verificar si la ruta es  correcta ej. prueba.txt'));
                 return;
             }
-
-            //if (typeof results === 'object')
-            // if (Array.isArray(results)){
-            if (options.stats) {
+         
+            else if (options.stats) {
                 console.log(chalk.bold.blue('\nTotal:'), chalk.blue(results.Total));
                 console.log(chalk.bold.yellow('\nUnique:'), chalk.yellow(results.Unique));
             }
 
-            if (options.validate) {
+           else if (options.validate) {
                 console.log(chalk.bold.bgBlue.italic.white('\nLinks Validados:'));
                 results.forEach((link) => {
                     console.log(chalk.underline(link.url));
-                    console.log(chalk.bold('Status:'), link.status);
-                    console.log(chalk.bold('Texto:'), link.text);
+                    console.log(chalk.bold('Status:'), link.status);                  
                     console.log(chalk.bold('Mensaje:'), link.statusText);
                     console.log(chalk.bold('File:'), link.file);
+                    console.log(chalk.bold('Texto:'), link.text);
                     console.log(chalk.white('---***---'));
                 });
 
             }
-            else {
+           else if(!options.validate) {
                 console.log(chalk.bold('\nLinks Encontrados:'));
                 results.forEach((link) => {
                     console.log(chalk.underline(link.url));
