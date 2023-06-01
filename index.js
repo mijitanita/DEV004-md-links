@@ -26,9 +26,24 @@ export const mdLinks = (ruta, options) => new Promise((resolve, reject) => {
         const results= {
         Total: totalDeLinks(links),
         Unique: linksUnicos(links),
-        Broken: totalDeLinksRotos(links),
+        Broken: 0
+       
       }
-      resolve(results);
+      // resolve(results);
+      const arrayBroken = links.map((link) => {
+        //validamos los links
+        return validarLosLinks(link.url, nuevaRuta, link.text)
+        .then((res)=>{
+          // console.log(res, '*********');
+          if(res.status > 200){
+            results.Broken++
+          }
+          // console.log(results, '*******');
+          resolve(results)
+        })
+       
+      });
+
     }
      else if (options.stats) {
         const results = {

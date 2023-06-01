@@ -53,15 +53,14 @@ export const leerContenidoArchivo = (archivo) => {
                } else {
                     const regex = /\[(?<text>.*?)\]\((?<url>https?:\/\/[^\s)]+)(?<!#)\)/g;;
                     const links = [];
-                    const lines = data.split('\n');
+                   
                     let match;
                     while ((match = regex.exec(data)) !== null) {
                          links.push({
                               text: match[1],
                               url: match[2],
                               file: archivo,
-                              linkLine: lines.findIndex(line =>
-                                   line.includes(match[2])) + 1
+                             
 
 
                          });
@@ -93,8 +92,13 @@ export const totalDeLinks = (links) => {
 
 export const totalDeLinksRotos = (links) => {
      console.log(links)
-     const cuentoLinksRotos =  links.filter((link) => link.value && link.value.status >= 400);
-     return cuentoLinksRotos.length;
+     // links.map(()=>{
+
+     // })
+     const cuentoLinksRotos =  links.filter((link) => link.status !==200);
+    // console.log(cuentoLinksRotos)
+          return cuentoLinksRotos.length;
+         
 }
 
 
