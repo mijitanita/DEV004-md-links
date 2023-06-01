@@ -44,27 +44,12 @@ export const mdLinks = (ruta, options) => new Promise((resolve, reject) => {
          
         });const arrResults = Promise.allSettled(arrPromises)
         resolve(arrResults)
+       // console.log(arrResults)
       }// si el usuario no quiere validar , resolver con links
       else if (!options.validate) {
         resolve(links);
       }
-      /*   Promise.all(promises)
-           .then((results) => {
-           if(options.stats){
-             const results = {
-           Unique: linksUnicos(links),
-           Total: totalDeLinks(links),
-         }
-           resolve(stats);
-         } else {
-           resolve(results);
-         }
-       })
-       .catch((error) => {
-         reject(error);
-       });
-     }*/
-
+    
     })
     .catch((error) => {
       reject(error);

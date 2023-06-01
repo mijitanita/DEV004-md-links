@@ -4,14 +4,6 @@ import { mdLinks } from './index.js';
 import { argv } from 'node:process';
 import chalk from 'chalk';
 
-
-/*console.log(chalk.bgBlue(argv));
-const validate = argv.includes('--validate');
-console.log({validate})*/
-//console.log("Hi!");
-//const argumentos = process.argv;
-//+++++++++++++++++++
-
 const cli = () => {
 
     //funcion que verifica las opciones indicadas por el usuario, llamando a la funcion mdLinks que esta en index.js
@@ -34,25 +26,26 @@ const cli = () => {
                 console.log(chalk.bgYellowBright.red('No hay ruta o Ruta inválida verificar si la ruta es  correcta ej. prueba.txt'));
                 return;
             }
-            else if(options.statsAndValidate) {
+            else if (options.statsAndValidate) {
                 console.log(chalk.bold.bgBlue.italic.white('\nStats & Validate:'));
                 console.log(chalk.bold.blue('\nTotal:'), chalk.blue(results.Total));
-                console.log(chalk.bold.yellow('\nUnique:'), chalk.yellow(results.Unique));       
+                console.log(chalk.bold.yellow('\nUnique:'), chalk.yellow(results.Unique));
                 console.log(chalk.bold.red('\nBroken:'), chalk.red(results.Broken));
             }
-         
+
             else if (options.stats) {
                 console.log(chalk.bold.bgBlue.italic.white('\nStats:'));
                 console.log(chalk.bold.blue('\nTotal:'), chalk.blue(results.Total));
                 console.log(chalk.bold.yellow('\nUnique:'), chalk.yellow(results.Unique));
             }
 
-           else if (options.validate) {
+            else if (options.validate) {
                 console.log(chalk.bold.bgBlue.italic.white('\nLinks Validados:'));
-               
+
                 results.forEach((link) => {
+                  // console.log(results)
                     console.log(chalk.underline(link.value.url));
-                    console.log(chalk.bold('Status:'), link.value.status);                  
+                    console.log(chalk.bold('Status:'), link.value.status);
                     console.log(chalk.bold('Mensaje:'), link.value.statusText);
                     console.log(chalk.bold('File:'), link.value.file);
                     console.log(chalk.bold('Texto:'), link.value.text);
@@ -60,12 +53,19 @@ const cli = () => {
                 });
 
             }
-          
+            else {
+                console.log(chalk.bold.bgBlue.italic.white('\nLinks Encontrados:'));
+                console.log(chalk.underline(link.url));
+                console.log(chalk.bold('File:'), link.file);
+                console.log(chalk.bold('Texto:'), link.text);
+                console.log(chalk.white('---***---'));
+            }
+
         })
-       
-    .catch((error) => {
-    console.log(chalk.red('Ocurrió un error al ejecutar mdLinks:', error));
-});
+
+        .catch((error) => {
+            console.log(chalk.red('Ocurrió un error al ejecutar mdLinks:', error));
+        });
 
 }
 cli()

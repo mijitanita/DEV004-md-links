@@ -9,7 +9,8 @@ export const validarLosLinks = (url, archivo, text) => {
            return fetch(url)          
     .then(response => {
         const urlFinal = response.url;
-        if(response.ok){
+               if(response.ok){
+              //  console.log(response.ok)
                 return {
                     url: url,
                     status: response.status,
@@ -18,11 +19,11 @@ export const validarLosLinks = (url, archivo, text) => {
                     text: text,
                 };
             } else {
-                throw newError (`La solicitud a ${finalUrl} no fue exitosa. Código de estado: ${response.status}`)
+                throw new Error (`La solicitud a ${finalUrl} no fue exitosa. Código de estado: ${response.status}`)
             }
         })
             .catch(error => {
-                console.log({error})
+              // console.log({error})
                 return {
                     url: url,
                     status: 400,

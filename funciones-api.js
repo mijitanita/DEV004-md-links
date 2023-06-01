@@ -4,7 +4,7 @@ import fs from 'fs';
 import { existsSync, statSync } from 'node:fs';
 import path from 'path';
 import { validarLosLinks } from './validate.js';
-import chalk from 'chalk';
+
 
 //archivo existe?
 export const rutaExiste = (archivo) => {
@@ -75,6 +75,7 @@ export const leerContenidoArchivo = (archivo) => {
 }
 //calcular la cantidad de links unicos
 export const linksUnicos = (links) => {
+    // console.log(links)
      const unicos = [];
      links.forEach((link) => {
           const linksUnicosEncontrados = unicos.some((unicos) =>
@@ -82,24 +83,20 @@ export const linksUnicos = (links) => {
           if (!linksUnicosEncontrados) {
                unicos.push(link);
           }
-
      });
      return unicos.length;
-
 }
+
 export const totalDeLinks = (links) => {
      return links.length;
-     }
-     
+     }     
 
-export const totalDeLinksRotos = (arrResults) => {
-     const cuentoLinksRotos = arrResults.filter(arrResult => arrResult.status ===400);
+export const totalDeLinksRotos = (links) => {
+     console.log(links)
+     const cuentoLinksRotos =  links.filter((link) => link.value && link.value.status >= 400);
      return cuentoLinksRotos.length;
-
 }
-/*export const totalDeLinksRotos = (links) => {
-   return links.reduce((acumulador, link) => link.status >= 400 ? acumulador +1 : acumulador ,0)
-    }*/
+
 
 
 
