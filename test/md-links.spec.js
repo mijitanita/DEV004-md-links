@@ -1,4 +1,4 @@
-import { rutaExiste, esAbsoluta, obtenerRutaAbsoluta, rutaEsArchivo, archivoEsMD, leerContenidoArchivo} from '../funcione-api.js';
+import { rutaExiste, esAbsoluta, obtenerRutaAbsoluta, rutaEsArchivo, archivoEsMD, leerContenidoArchivo} from '../funciones-api.js';
 import  path  from 'path';
 
 

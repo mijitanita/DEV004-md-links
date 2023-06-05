@@ -10,7 +10,7 @@
     "url": "https://github.com/mijitanita/DEV004-md-links/issues"
   },
   "license": "ISC",
-  "bin":{
+  "bin": {
     "say-hello": "./cli.js"
   },
   "directories": {
@@ -36,7 +36,7 @@
     "chalk": "^5.2.0",
     "chalknpm": "^1.0.1",
     "install": "^0.13.0",
-    "node-fetch": "^3.3.1"
+    "node-fetch": "^2.6.11"
   },
   "scripts": {
     "test": "jest --verbose --coverage"
