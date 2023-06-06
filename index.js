@@ -57,9 +57,10 @@ export const mdLinks = (ruta, options) => new Promise((resolve, reject) => {
           //validamos los links
           return validarLosLinks(link.url, nuevaRuta, link.text);
          
-        });const arrResults = Promise.allSettled(arrPromises)
-        resolve(arrResults)
+        });const arrResults = Promise.all(arrPromises)
        // console.log(arrResults)
+        resolve(arrResults)
+      
       }// si el usuario no quiere validar , resolver con links
       else if (!options.validate) {
         resolve(links);

@@ -92,10 +92,7 @@ export const totalDeLinks = (links) => {
 
 export const totalDeLinksRotos = (links) => {
      console.log(links)
-     // links.map(()=>{
-
-     // })
-     const cuentoLinksRotos =  links.filter((link) => link.status !==200);
+    const cuentoLinksRotos =  links.filter((link) => link.status !==200);
     // console.log(cuentoLinksRotos)
           return cuentoLinksRotos.length;
          
