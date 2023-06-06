@@ -91,7 +91,7 @@ export const totalDeLinks = (links) => {
      }     
 
 export const totalDeLinksRotos = (links) => {
-     console.log(links)
+    // console.log(links)
     const cuentoLinksRotos =  links.filter((link) => link.status !==200);
     // console.log(cuentoLinksRotos)
           return cuentoLinksRotos.length;

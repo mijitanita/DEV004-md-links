@@ -112,6 +112,35 @@ describe('totalDeLinks', () => {
   
 });
 
+
+describe('totalDeLinksRotos', () => {
+  it('debe ser una funcion', () => {
+    expect(typeof totalDeLinksRotos).toBe('function');
+  });
+  it('se entrega un arreglo de objetos que tienen res.status 200 y retorna la cantidad de valores que >200 que hay en res.status', () => {
+    expect(totalDeLinksRotos([
+      {
+        url: 'https://www.example.com/server-error',
+        status: 400,
+        statusText: 'Bad Request',
+        file: 'unobuenootromalo.md',
+        text: 'Enlace con respuesta de error en el servidor'
+      },
+      {
+        url: 'https://es.wikipedia.org/wiki/Markdown',
+        status: 200,
+        statusText: 'OK',
+        file: 'unobuenootromalo.md',
+        text: 'Markdown'
+      },
+
+      
+    ])).toBe(1);
+  }); 
+
+});
+
+
 describe('mdLinks', () => {
 
   it('mdLinks procesa un solo archivo con 3 links sin validar', () => {

@@ -34,11 +34,11 @@ export const mdLinks = (ruta, options) => new Promise((resolve, reject) => {
         //validamos los links
         return validarLosLinks(link.url, nuevaRuta, link.text)
         .then((res)=>{
-          // console.log(res, '*********');
+          console.log(res, '*********');
           if(res.status > 200){
             results.Broken++
           }
-          // console.log(results, '*******');
+          //console.log(results, '*******');
           resolve(results)
         })
        
