@@ -1,4 +1,4 @@
-import { rutaExiste, esAbsoluta, obtenerRutaAbsoluta, rutaEsArchivo, archivoEsMD, leerContenidoArchivo, linksUnicos, totalDeLinks  } from '../funciones-api.js';
+import { rutaExiste, esAbsoluta, obtenerRutaAbsoluta, rutaEsArchivo, archivoEsMD, leerContenidoArchivo, linksUnicos, totalDeLinks, totalDeLinksRotos  } from '../funciones-api.js';
 import { mdLinks } from '../index.js';
 import path from 'path';
 
@@ -96,6 +96,7 @@ describe('linksUnicos', () => {
   });
   
 });
+
 describe('totalDeLinks', () => {
   it('debe ser una funcion', () => {
     expect(typeof totalDeLinks).toBe('function');
@@ -111,29 +112,6 @@ describe('totalDeLinks', () => {
   
 });
 
-//describe('mdLinks', () => {
-
-/*it('should...', () => {
-  console.log('FIX ME!');
-});*/
-/*it('deberia devolver una promesa', () => {
-  expect(mdLinks()).toBe(typeof Promise); 
-});*/
-/*it('debe rechazar la promesa cuando el path no existe', () => {
-return mdLinks('/este path/no existe.md').catch((error) =>{
-  expect(error).toBe('la ruta no existe');
-})
-});
-});*/
-
-
-/*it('deberia retornar que no existe', () =>{
-  expect(rutaExiste('./ejemplo.md')).toBe(true)
-})
-it('deberia retornar que si existe', () =>{
-  determinarExistencia(  )
-})
-})*/
 describe('mdLinks', () => {
 
   it('mdLinks procesa un solo archivo con 3 links sin validar', () => {
@@ -165,6 +143,7 @@ describe('mdLinks', () => {
 
   });
 })
+
 describe('mdLinks', () => {
 
   it('mdLinks procesa un solo archivo con 3 links  validados', () => {
