@@ -41,9 +41,9 @@ const cli = () => {
 
             else if (options.validate) {
                 console.log(chalk.bold.bgBlue.italic.white('\nLinks Validados:'));
-console.log(results)
+               // console.log(results)
                 results.forEach((link) => {
-                  
+
                     console.log(chalk.underline(link.url));
                     console.log(chalk.bold('Status:'), link.status);
                     console.log(chalk.bold('Mensaje:'), link.statusText);
@@ -55,10 +55,12 @@ console.log(results)
             }
             else {
                 console.log(chalk.bold.bgBlue.italic.white('\nLinks Encontrados:'));
+                results.forEach((link) => {   
+                console.log(chalk.bold('Texto:'), link.text);
                 console.log(chalk.underline(link.url));
                 console.log(chalk.bold('File:'), link.file);
-                console.log(chalk.bold('Texto:'), link.text);
                 console.log(chalk.white('---***---'));
+                });
             }
 
         })
