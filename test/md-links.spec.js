@@ -1,4 +1,4 @@
-import { rutaExiste, esAbsoluta, obtenerRutaAbsoluta, rutaEsArchivo, archivoEsMD, leerContenidoArchivo, linksUnicos } from '../funciones-api.js';
+import { rutaExiste, esAbsoluta, obtenerRutaAbsoluta, rutaEsArchivo, archivoEsMD, leerContenidoArchivo, linksUnicos, totalDeLinks  } from '../funciones-api.js';
 import { mdLinks } from '../index.js';
 import path from 'path';
 
@@ -94,6 +94,20 @@ describe('linksUnicos', () => {
       
     ])).toBe(2);
   });
+  
+});
+describe('totalDeLinks', () => {
+  it('debe ser una funcion', () => {
+    expect(typeof totalDeLinks).toBe('function');
+  });
+  it('la funcion debe dar el resultado el total  de links', () => {
+    expect(totalDeLinks([
+      {file: 'ejemplo.md', text: 'Markdown', url: 'https://es.wikipedia.org/wiki/Markdown'},
+      {file: 'ejemplo.md', text: 'Markdown', url: 'https://es.wikipedia.org/wiki/Markdown'},
+      { file: 'ejemplo.md', text: 'Node.js', url: 'https://nodejs.org/' },
+      
+    ])).toBe(3);
+  }); 
   
 });
 
