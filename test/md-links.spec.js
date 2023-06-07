@@ -179,8 +179,6 @@ describe('validarLosLinks', () => {
   });
 });
 
-
-
 describe('mdLinks', () => {
 
   it('mdLinks procesa un solo archivo con 3 links sin validar', () => {
@@ -211,9 +209,6 @@ describe('mdLinks', () => {
       );
 
   });
-})
-
-describe('mdLinks', () => {
 
   it('mdLinks procesa un solo archivo con 3 links  validados', () => {
     const ruta = 'ejemplo.md';
