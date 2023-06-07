@@ -47,7 +47,7 @@ En este proyecto, creé una herramienta de línea de comando (CLI) y una bibliot
 
 ## 4. Criterios de aceptación mínimos del proyecto
 
-Para comenzar este proyecto realicé**_fork_** y **_clonar_** del
+Para comenzar este proyecto realicé **_fork_** y **_clonar_** del
 repositorio de **_Laboratoria_**
 
 Antes de comenzar a codear, creé un **plan de acción**. Esto debería
@@ -55,6 +55,7 @@ quedar detallado en el `README.md` de tu repo y en una serie de **_issues_**
 y **_milestones_** para priorizar y organizar el trabajo, y para poder hacer
 seguimiento de tu progreso.
 D:\laboratoria\proyecto-4\DEV004-md-links\diagrama de flujo de md-links.jpg
+thumb.png
 Dentro de cada **_milestone_** se crearán y asignarán los **_issues_** que cada quien
 considere necesarios.
 
