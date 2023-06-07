@@ -4,14 +4,12 @@
 
 * [1. Preámbulo](#1-preámbulo)
 * [2. Resumen del proyecto](#2-resumen-del-proyecto)
-* [3. Consideraciones generales](#3-consideraciones-generales)
-* [4. 
-* [5. Criterios de aceptación mínimos del proyecto](#5-criterios-de-aceptación-mínimos-del-proyecto)
-* [6. Entregables](#6-entregables)
-* [7. Hacker edition](#7-hacker-edition)
-* [8. Pistas, tips y lecturas complementarias](#8-pistas-tips-y-lecturas-complementarias)
-* [9. Checklist](#9-checklist)
-* [10. Achicando el problema](#10-achicando-el-problema)
+* [3. Consideraciones generales](#3-consideraciones-generales) 
+* [4. Criterios de aceptación mínimos del proyecto](#4-criterios-de-aceptación-mínimos-del-proyecto)
+* [5. Entregables](#5-entregables)
+* [6. Otros Recursos](#6-Otros-Recursos)
+* [7. Checklist](#7-checklist)
+
 
 ***
 
@@ -35,7 +33,7 @@ En este proyecto, creé una herramienta de línea de comando (CLI) y una bibliot
   CLI)  estan implementados en JavaScript para ser ejecutados con
   Node.js.
 
-* Módulo **Instalable** via `npm install <mijitanita>/md-links`. 
+* Módulo **Instalable** via `npm install mijitanita/DEV004-md-links`. 
   
  * Usé librería [chalk](https://www.npmjs.com/package/chalk) para personalizar
  el estilo de mi aplicación en la terminal.
@@ -85,13 +83,19 @@ En donde desarrollo uno a uno todos los procesos indicados en el diagrama
 El ejecutable de nuestra aplicación 
 #### Options
 
+##### `--help`
+Si pasamos la opción `--help`, el output (salida) será un texto con con una breve explicación de los comandos(options)
+
+Captura en  terminal de option --help :
+![help](https://github.com/mijitanita/DEV004-md-links/blob/main/capturas/--help.png).
+
 ##### `--validate`
 
 Si pasamos la opción `--validate`, el módulo debe hacer una petición HTTP para
 averiguar si el link funciona o no. Si el link resulta en una redirección a una
 URL que responde ok, entonces consideraremos el link como ok.
 
-Captura de terminal :
+Captura en  terminal de option --validate :
 ![validate](https://github.com/mijitanita/DEV004-md-links/blob/f3b547644ba7a26dc715db1851fa37acb23ec04e/capturas/--validate.png).
 
 ##### `--stats`
@@ -99,32 +103,21 @@ Captura de terminal :
 Si pasamos la opción `--stats` el output (salida) será un texto con estadísticas
 básicas sobre los links.
 
-```sh
-$ md-links ./some/example.md --stats
-Total: 3
-Unique: 3
-```
+Captura en  terminal de option --stats :
+![stats](https://github.com/mijitanita/DEV004-md-links/blob/main/capturas/--stats.png).
 
 También podemos combinar `--stats` y `--validate` para obtener estadísticas que
 necesiten de los resultados de la validación.
 
-```sh
-$ md-links ./some/example.md --stats --validate
-Total: 3
-Unique: 3
-Broken: 1
-```
+Captura en  terminal de option --stats --validate :
+![stats&validate](https://github.com/mijitanita/DEV004-md-links/blob/main/capturas/--stats%20--validate.png).
 
-## 6. Entregables
+## 5. Entregables
 
-Módulo instalable via `npm install <github-user>/md-links`. Este módulo debe
-incluir tanto **un ejecutable** como **una interfaz** que podamos importar con `require`
-para usarlo programáticamente.
+Módulo instalable via `npm install <github-user>/md-links`. 
 
 
-
-
-### Otros recursos
+### 6. Otros recursos
 
 * [Crear diagramas de flujo](https://app.diagrams.net/)
 * [ESModules en package.json](https://blog.logrocket.com/es-modules-in-node-today/)
@@ -148,37 +141,38 @@ para usarlo programáticamente.
 * [Linea de comando CLI](https://medium.com/netscape/a-guide-to-create-a-nodejs-command-line-package-c2166ad0452e)
 
 
-## 9. Checklist
+## 7. Checklist
 
 ### General
 
-* [ ] Puede instalarse via `npm install --global <github-user>/md-links`
+* [x] Puede instalarse via `npm install --global <github-user>/md-links`
 
 ### `README.md`
 
-* [ ] Un board con el backlog para la implementación de la librería.
-* [ ] Documentación técnica de la librería.
-* [ ] Guía de uso e instalación de la librería
+* [x] Un board con el backlog para la implementación de la librería.
+* [x] Documentación técnica de la librería.
+* [x] Guía de uso e instalación de la librería
 
 ### API `mdLinks(path, opts)`
 
-* [ ] El módulo exporta una función con la interfaz (API) esperada.
-* [ ] Implementa soporte para archivo individual
-* [ ] Implementa soporte para directorios
-* [ ] Implementa `options.validate`
+* [x] El módulo exporta una función con la interfaz (API) esperada.
+* [x] Implementa soporte para archivo individual
+* [x] Implementa `options.validate`
 
 ### CLI
 
-* [ ] Expone ejecutable `md-links` en el path (configurado en `package.json`)
-* [ ] Se ejecuta sin errores / output esperado
-* [ ] Implementa `--validate`
-* [ ] Implementa `--stats`
+* [x] Expone ejecutable `md-links` en el path (configurado en `package.json`)
+* [x] Se ejecuta sin errores / output esperado
+* [x] Implementa `--help`
+* [x] Implementa `--validate`
+* [x] Implementa `--stats`
+* [x] Implementa `--stats --validate`
 
 ### Pruebas / tests
 
-* [ ] Pruebas unitarias cubren un mínimo del 70% de statements, functions,
+* [x] Pruebas unitarias cubren un mínimo del 70% de statements, functions,
   lines, y branches.
-* [ ] Pasa tests (y linters) (`npm test`).
+* [x] Pasa tests (y linters) (`npm test`).
 
 
 
