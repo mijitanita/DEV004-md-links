@@ -92,7 +92,7 @@ averiguar si el link funciona o no. Si el link resulta en una redirección a una
 URL que responde ok, entonces consideraremos el link como ok.
 
 Captura de terminal :
-[--validate](https://github.com/mijitanita/DEV004-md-links/blob/f3b547644ba7a26dc715db1851fa37acb23ec04e/capturas/--validate.png).
+[validate](https://github.com/mijitanita/DEV004-md-links/blob/f3b547644ba7a26dc715db1851fa37acb23ec04e/capturas/--validate.png).
 
 ##### `--stats`
 
