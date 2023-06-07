@@ -5,7 +5,7 @@ import { validarLosLinks } from './validate.js'
 
 
 export const mdLinks = (ruta, options) => new Promise((resolve, reject) => {
-  console.log({options})
+ // console.log({options})
   if (!ruta) reject('No hay ruta')
 
   if (!rutaExiste(ruta)) reject('ruta inválida verificar si la ruta es  correcta y si es absoluta podria poner \\\\')
@@ -64,7 +64,7 @@ export const mdLinks = (ruta, options) => new Promise((resolve, reject) => {
       }// si el usuario no quiere validar , resolver con links
       else if (!options.validate) {
         resolve(links);
-        console.log(links);
+        //console.log(links);
       }
     
     })

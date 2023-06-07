@@ -1,4 +1,5 @@
 import { rutaExiste, esAbsoluta, obtenerRutaAbsoluta, rutaEsArchivo, archivoEsMD, leerContenidoArchivo, linksUnicos, totalDeLinks, totalDeLinksRotos  } from '../funciones-api.js';
+import { validarLosLinks } from '../validate.js';
 import { mdLinks } from '../index.js';
 import path from 'path';
 
@@ -139,6 +140,45 @@ describe('totalDeLinksRotos', () => {
   }); 
 
 });
+
+describe('validarLosLinks', () => {
+  it('debe ser una funcion', () => {
+    expect(typeof validarLosLinks).toBe('function');
+  });
+  it('debe retornar un objeto con la información correcta cuando la petición es exitosa', () =>{
+    const url = 'https://ejemplo.com';
+    const archivo = 'archivo.md';
+    const text = 'Texto de prueba';
+    return validarLosLinks(url, archivo, text).then(response => {
+      expect(response.url).toBe(url);
+      expect(response.status).toBe(200);
+      expect(response.statusText).toBe('OK');
+      expect(response.file).toBe(archivo);
+      expect(response.text).toBe(text);  
+    });
+  });
+  it('debe retornar un error con el mensaje correcto  cuando la petición no es exitosa',() =>{
+    const url = 'https://ejemplo.com/no-existe';
+    const archivo = 'archivo.md';
+    const text = 'Texto de prueba';
+    return validarLosLinks(url, archivo, text).catch(error => {
+     expect(error.message).toBe(`La solicitud a ${finalUrl} no fue exitosa. Código de estado: ${response.status}`) 
+    });
+  });
+  it('debe retornar un objeto con la información correcta cuando ocurre un error durante la petición no es exitosa', () =>{
+    const url = 'https://no valido';
+    const archivo = 'archivo.md';
+    const text = 'Texto de prueba';
+    return validarLosLinks(url, archivo, text).then(response => {
+      expect(response.url).toBe(url);
+      expect(response.status).toBe(400);
+      expect(response.statusText).toBe('Bad Request');
+      expect(response.file).toBe(archivo);
+      expect(response.text).toBe(text);  
+    });
+  });
+});
+
 
 
 describe('mdLinks', () => {
