@@ -5,6 +5,7 @@ import fetch from 'node-fetch';
 // hacer la peticion por cada url en el array
 
 export const validarLosLinks = (url, archivo, text) => {
+   // console.log(fetch);
            return fetch(url)          
     .then(response => {
         const urlFinal = response.url;

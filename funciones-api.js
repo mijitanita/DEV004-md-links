@@ -1,12 +1,11 @@
 // funciones
-import { constants } from 'buffer';
 import fs from 'fs';
 import { existsSync, statSync } from 'node:fs';
 import path from 'path';
 import { validarLosLinks } from './validate.js';
 
 
-//archivo existe?
+//archivo existe?, toma como parametro la ruta del archivo
 export const rutaExiste = (archivo) => {
      return existsSync(archivo)
 

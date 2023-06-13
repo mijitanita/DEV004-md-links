@@ -2,7 +2,24 @@ import { rutaExiste, esAbsoluta, obtenerRutaAbsoluta, rutaEsArchivo, archivoEsMD
 import { validarLosLinks } from '../validate.js';
 import { mdLinks } from '../index.js';
 import path from 'path';
+import fetch from 'node-fetch';
 
+jest.mock('node-fetch', () => {
+  
+
+  //Mock the default export and named export 'foo'
+  return {
+    __esModule: true,
+    
+    default: jest.fn(() => Promise.resolve({
+      ok:true,
+      url:'https://ejemplo.com',
+      status:200,
+      statusText:'OK',
+    })),
+    
+  };
+});
 
 
 describe('rutaExiste', () => {
@@ -165,7 +182,11 @@ describe('validarLosLinks', () => {
      expect(error.message).toBe(`La solicitud a ${finalUrl} no fue exitosa. Código de estado: ${response.status}`) 
     });
   });
-  it('debe retornar un objeto con la información correcta cuando ocurre un error durante la petición no es exitosa', () =>{
+  it('debe retornar un objeto con la información correcta cuando ocurre un error durante la petición ', () =>{
+    fetch.mockImplementationOnce(jest.fn(() => Promise.resolve({
+      ok:false,
+     
+    })));
     const url = 'https://no valido';
     const archivo = 'archivo.md';
     const text = 'Texto de prueba';
